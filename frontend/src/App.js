@@ -13,6 +13,8 @@ import Footer from './components/Footer';
 import SignUpScreen from './screens/SignUpScreen';
 import SignInScreen from './screens/SignInScreen';
 import HomeScreen from './screens/HomeScreen';
+import CreateRoomScreen from './screens/CreateRoomScreen';
+import JoinRoomScreen from './screens/JoinRoomScreen';
 
 function App() {
 	const dispatch = useDispatch();
@@ -74,6 +76,16 @@ function App() {
 								exact
 								path='/signin'
 								component={SignInScreen}
+							/>
+							<Route
+								exact
+								path='/create_room'
+								component={CreateRoomScreen}
+							/>
+							<Route
+								exact
+								path='/join_room'
+								component={JoinRoomScreen}
 							/>
 						</Switch>
 					</div>

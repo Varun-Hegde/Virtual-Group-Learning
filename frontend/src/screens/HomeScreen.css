@@ -1,0 +1,18 @@
+.Home > h1 {
+    text-align: center;
+}
+
+.Home_button {
+    height: 70vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Home_button > .Home_button_create:hover {
+    opacity: 60%;
+}
+
+.Home_button > .Home_button_join:hover {
+    opacity: 60%;
+}
