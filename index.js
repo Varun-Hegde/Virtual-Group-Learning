@@ -11,8 +11,10 @@ const passportFile = require('./passport');
 const connectToDatabase = require('./config//db');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/globalErrorController');
-const UserRouter = require('./routes/userRoutes');
 const cookieParser = require('cookie-parser');
+
+const UserRouter = require('./routes/userRoutes');
+const RoomRouter = require('./routes/roomRoutes');
 
 const app = express();
 
@@ -61,7 +63,9 @@ app.get('/', (req, res) => {
 		},
 	});
 });
+
 app.use('/api/users', UserRouter);
+app.use('/api/rooms', RoomRouter);
 
 // Any other invalid route
 app.all('*', (req, res, next) => {
