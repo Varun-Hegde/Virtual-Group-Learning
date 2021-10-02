@@ -11,7 +11,8 @@ import * as UserAction from './actions/userActions';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SignUpScreen from './screens/SignUpScreen';
-import SingInScreen from './screens/SignInScreen';
+import SignInScreen from './screens/SignInScreen';
+import HomeScreen from './screens/HomeScreen';
 
 function App() {
 	const dispatch = useDispatch();
@@ -61,13 +62,18 @@ function App() {
 						<Switch>
 							<Route
 								exact
+								path='/'
+								component={HomeScreen}
+							/>
+							<Route
+								exact
 								path='/signup'
 								component={SignUpScreen}
 							/>
 							<Route
 								exact
 								path='/signin'
-								component={SingInScreen}
+								component={SignInScreen}
 							/>
 						</Switch>
 					</div>
