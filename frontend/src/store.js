@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import * as UserReducer from './reducers/userReducer';
 import * as AppReducer from './reducers/appReducer';
+import * as RoomReducer from './reducers/roomReducer';
 
 const initialState = {};
 const middleware = [thunk];
@@ -15,6 +16,8 @@ const reducer = combineReducers({
 	googleSignIn: UserReducer.googleOauth,
 	status: UserReducer.statusReducer,
 	appDetails: AppReducer.app,
+	createRoom: RoomReducer.createRoomReducer,
+	joinRoom: RoomReducer.joinRoomReducer,
 });
 
 const store = createStore(

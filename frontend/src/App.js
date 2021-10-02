@@ -62,11 +62,7 @@ function App() {
 				<main className='py-3'>
 					<div className='container'>
 						<Switch>
-							<Route
-								exact
-								path='/'
-								component={HomeScreen}
-							/>
+							<Route exact path='/' component={HomeScreen} />
 							<Route
 								exact
 								path='/signup'
@@ -79,12 +75,12 @@ function App() {
 							/>
 							<Route
 								exact
-								path='/create_room'
+								path='/create-room'
 								component={CreateRoomScreen}
 							/>
 							<Route
 								exact
-								path='/join_room'
+								path='/join-room'
 								component={JoinRoomScreen}
 							/>
 						</Switch>

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const roomSchema = new mongoose.Schema(
 	{
@@ -34,12 +35,11 @@ const roomSchema = new mongoose.Schema(
 
 //Check if entered password is correct(during join rooms)
 roomSchema.methods.correctPassword = async function (
-	roomPassword,
-	password,
+	candidatePassword,
+	userPassword,
 ) {
-	return await bcrypt.compare(roomPassword, password);
+	return await bcrypt.compare(candidatePassword, userPassword);
 };
-
 const Room = mongoose.model('Room', roomSchema);
 
 module.exports = Room;

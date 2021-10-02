@@ -1,4 +1,4 @@
-import axios from '../axios';
+import axios from 'axios';
 
 import * as UserConstants from '../constants/userConstants';
 import * as AppConstants from '../constants/appConstants';

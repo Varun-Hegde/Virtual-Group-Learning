@@ -66,7 +66,15 @@ const userSchema = mongoose.Schema(
 		passwordChangedAt: Date,
 		passwordResetToken: String,
 		passwordResetExpires: Date,
+
+		roomsPartOf: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Room',
+			},
+		],
 	},
+
 	{
 		timestamps: true,
 	},
