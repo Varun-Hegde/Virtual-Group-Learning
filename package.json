@@ -24,6 +24,7 @@
     "morgan": "^1.10.0",
     "nanoid": "^3.1.28",
     "nodemailer": "^6.6.5",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "nodemon": "^2.0.13",
     "passport": "^0.4.1",
     "passport-google-token": "^0.1.2",

@@ -9,7 +9,7 @@ export const createRoom = (reqBody) => async (dispatch) => {
 			type: RoomConstants.CREATE_ROOM_REQUEST,
 		});
 
-		const { data } = await axios.post('/api/rooms', reqBody);
+		const { data } = await axios.post('/api/rooms/create', reqBody);
 
 		dispatch({
 			type: RoomConstants.CREATE_ROOM_SUCCESS,

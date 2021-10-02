@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { joinRoom } from '../actions/roomActions';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import * as RoomConstants from '../constants/roomConstants';
 
 const CreateRoomScreen = ({ history }) => {
 	const [roomCode, setRoomCode] = useState('');
@@ -32,6 +35,9 @@ const CreateRoomScreen = ({ history }) => {
 	const statusState = useSelector((state) => state.status);
 	const { userInfo: userStatus, isLoggedIn } = statusState;
 
+	const joinRoomState = useSelector((state) => state.joinRoom);
+	const { loading, success, roomInfo, error } = joinRoomState;
+
 	useEffect(() => {
 		if (!isLoggedIn || !userStatus)
 			history.push('/signin?redirect=/join-room');
@@ -39,10 +45,17 @@ const CreateRoomScreen = ({ history }) => {
 
 	const dispatch = useDispatch();
 
+	useEffect(() => {
+		if (success || roomInfo) {
+			dispatch({ type: RoomConstants.JOIN_ROOM_RESET });
+			history.push('/');
+		}
+	}, [success, roomInfo, history, dispatch]);
+
 	const submitHandler = (e) => {
 		e.preventDefault();
 		let reqBody = {
-			name: roomCode,
+			roomCode,
 			password,
 		};
 
@@ -94,6 +107,8 @@ const CreateRoomScreen = ({ history }) => {
 						/>
 						<FormFeedback>{errors.password}</FormFeedback>
 					</FormGroup>
+					{loading && <Loader />}
+					{error && <Message variant='danger'>{error}</Message>}
 					<Button
 						block
 						type='submit'

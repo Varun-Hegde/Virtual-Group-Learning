@@ -18,6 +18,8 @@ export const createRoomReducer = (state = {}, action) => {
 				error: action.payload,
 				success: false,
 			};
+		case RoomConstants.CREATE_ROOM_RESET:
+			return {};
 		default:
 			return {};
 	}
@@ -41,6 +43,8 @@ export const joinRoomReducer = (state = {}, action) => {
 				error: action.payload,
 				success: false,
 			};
+		case RoomConstants.JOIN_ROOM_RESET:
+			return {};
 		default:
 			return {};
 	}

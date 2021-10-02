@@ -6,10 +6,14 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { createRoom } from '../actions/roomActions';
+import * as RoomConstants from '../constants/roomConstants';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const CreateRoomScreen = ({ history }) => {
 	const [roomCode, setRoomCode] = useState('');
 	const [password, setPassword] = useState('');
+	const [description, setDesc] = useState('');
 
 	const [touchedRoomCode, setTouchedRoomCode] = useState(false);
 	const [touchedPassword, setTouchedPassword] = useState(false);
@@ -39,15 +43,26 @@ const CreateRoomScreen = ({ history }) => {
 
 	const dispatch = useDispatch();
 
+	const createRoomState = useSelector((state) => state.createRoom);
+	const { loading, success, roomInfo, error } = createRoomState;
+
 	const submitHandler = (e) => {
 		e.preventDefault();
 		let reqBody = {
 			name: roomCode,
 			password,
+			description,
 		};
 
 		dispatch(createRoom(reqBody));
 	};
+
+	useEffect(() => {
+		if (success || roomInfo) {
+			dispatch({ type: RoomConstants.CREATE_ROOM_RESET });
+			history.push('/');
+		}
+	}, [success, roomInfo, history, dispatch]);
 
 	const errors = validate();
 	return (
@@ -65,7 +80,7 @@ const CreateRoomScreen = ({ history }) => {
 							type='text'
 							id='roomCode'
 							name='roomCode'
-							placeholder='Room Code'
+							placeholder='Room Name'
 							value={roomCode}
 							onChange={(e) => setRoomCode(e.target.value)}
 							onBlur={() => setTouchedRoomCode(true)}
@@ -94,6 +109,21 @@ const CreateRoomScreen = ({ history }) => {
 						/>
 						<FormFeedback>{errors.password}</FormFeedback>
 					</FormGroup>
+					<FormGroup>
+						<Label htmlFor='desc' id='desc'>
+							Description
+						</Label>
+						<Input
+							type='textarea'
+							name='desc'
+							id='desc'
+							placeholder='Campground description'
+							value={description}
+							onChange={(e) => setDesc(e.target.value)}
+						/>
+					</FormGroup>
+					{loading && <Loader />}
+					{error && <Message variant='danger'>{error}</Message>}
 					<Button
 						block
 						type='submit'
@@ -105,7 +135,7 @@ const CreateRoomScreen = ({ history }) => {
 							!password
 						}
 					>
-						Join Room
+						Create Room
 					</Button>
 				</Form>
 			</FormContainer>

@@ -16,6 +16,8 @@ import HomeScreen from './screens/HomeScreen';
 import CreateRoomScreen from './screens/CreateRoomScreen';
 import JoinRoomScreen from './screens/JoinRoomScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ForgotPassword from './screens/ForgotPassword';
+import ResetPassword from './screens/PasswordResetScreen';
 
 function App() {
 	const dispatch = useDispatch();
@@ -88,6 +90,16 @@ function App() {
 								exact
 								path='/profile'
 								component={ProfileScreen}
+							/>
+							<Route
+								exact
+								path='/reset-password'
+								component={ForgotPassword}
+							/>
+							<Route
+								exact
+								path='/reset-password/:token'
+								component={ResetPassword}
 							/>
 						</Switch>
 					</div>
