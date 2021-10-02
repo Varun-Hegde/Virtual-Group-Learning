@@ -88,7 +88,7 @@ function App() {
 							/>
 							<Route
 								exact
-								path='/profile'
+								path='/my-profile'
 								component={ProfileScreen}
 							/>
 							<Route
