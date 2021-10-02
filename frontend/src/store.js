@@ -18,6 +18,7 @@ const reducer = combineReducers({
 	appDetails: AppReducer.app,
 	createRoom: RoomReducer.createRoomReducer,
 	joinRoom: RoomReducer.joinRoomReducer,
+	userDetails : UserReducer.userDetailsReducer
 });
 
 const store = createStore(
