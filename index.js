@@ -15,6 +15,7 @@ const cookieParser = require('cookie-parser');
 
 const UserRouter = require('./routes/userRoutes');
 const RoomRouter = require('./routes/roomRoutes');
+const SubjectRouter = require('./routes/subjectRoutes');
 
 const app = express();
 
@@ -66,6 +67,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', UserRouter);
 app.use('/api/rooms', RoomRouter);
+app.use('/api/subjects', SubjectRouter);
 
 // Any other invalid route
 app.all('*', (req, res, next) => {

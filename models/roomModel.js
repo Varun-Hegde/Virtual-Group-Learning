@@ -30,6 +30,12 @@ const roomSchema = new mongoose.Schema(
 				ref: 'User',
 			},
 		],
+		subjects: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Subject',
+			},
+		],
 	},
 	{
 		timestamps: true,

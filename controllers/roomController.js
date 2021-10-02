@@ -78,7 +78,25 @@ const joinRoom = catchAsync(async (req, res, next) => {
 	}
 });
 
+//Get all subjects of a room
+const getSubjects = catchAsync(async (req, res, next) => {
+	const { id } = req.params;
+	let subjects = await Room.findById(id, 'subjects').populate({
+		path: 'subjects',
+		select: 'name createdBy',
+	});
+	subjects = await subjects.populate({
+		path: 'subjects.createdBy',
+		select: 'name',
+	});
+	res.json({
+		status: 'success',
+		data: subjects,
+	});
+});
+
 module.exports = {
 	createRoom,
 	joinRoom,
+	getSubjects,
 };

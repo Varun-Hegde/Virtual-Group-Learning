@@ -144,7 +144,7 @@ export const googleOauth = (token) => async (dispatch) => {
 };
 
 //Rooms joined
-export const getUserDetails = () => async(dispatch) => {
+export const getUserDetails = () => async (dispatch) => {
 	try {
 		dispatch({
 			type: UserConstants.USER_DETAILS_REQUEST,
@@ -154,7 +154,7 @@ export const getUserDetails = () => async(dispatch) => {
 
 		dispatch({
 			type: UserConstants.USER_DETAILS_SUCCESS,
-			payload: data,
+			payload: data.data,
 		});
 	} catch (error) {
 		dispatch({
@@ -165,4 +165,4 @@ export const getUserDetails = () => async(dispatch) => {
 					: error.message,
 		});
 	}
-}
+};

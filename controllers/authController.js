@@ -338,7 +338,10 @@ const profile = catchAsync(async (req, res, next) => {
 		select: 'name',
 	});
 
-	res.json(user);
+	res.json({
+		status: 'success',
+		data: user,
+	});
 });
 
 module.exports = {
