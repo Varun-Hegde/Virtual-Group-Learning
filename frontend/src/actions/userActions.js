@@ -144,13 +144,13 @@ export const googleOauth = (token) => async (dispatch) => {
 };
 
 //Rooms joined
-export const getUserDetails = (reqBody) => async(dispatch) => {
+export const getUserDetails = () => async(dispatch) => {
 	try {
 		dispatch({
 			type: UserConstants.USER_DETAILS_REQUEST,
 		});
 
-		const { data } = await axios.get('/api/users/profile',reqBody);
+		const { data } = await axios.get('/api/users/profile');
 
 		dispatch({
 			type: UserConstants.USER_DETAILS_SUCCESS,

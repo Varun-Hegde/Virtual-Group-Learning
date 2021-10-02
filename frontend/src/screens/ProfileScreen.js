@@ -21,10 +21,11 @@ function ProfileScreen( { history } ) {
         else {
             history.push('/signin?redirect=/profile');
         }
-    })
+    }, [dispatch])
 
     return (
         <div>
+            { userProfileInfo && <h1>{userProfileInfo.name}</h1> }
             { userProfileInfo && userProfileInfo.roomsPartOf.map(room => {
                 return (
                     <Row xs={1} md={2} className="g-4">
