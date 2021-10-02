@@ -7,7 +7,7 @@ const Room = require('../models/roomModel');
 const User = require('../models/userModel');
 
 const createRoom = catchAsync(async (req, res, next) => {
-	let { name, password } = req.body;
+	let { name, password, description } = req.body;
 
 	if (!name || !password)
 		return next(new AppError('Password and Room name required', 400));
@@ -27,11 +27,12 @@ const createRoom = catchAsync(async (req, res, next) => {
 		admin: req.user._id,
 		studentsInRoom,
 		roomCode,
+		description,
 	};
 
 	const room = await Room.create(queryObj);
 
-	const user = await User.findOne(req.user._id);
+	const user = await User.findById(req.user._id);
 	user.roomsPartOf.push(room._id);
 
 	await user.save();

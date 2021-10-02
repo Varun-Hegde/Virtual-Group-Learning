@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const Room = require('../models/roomModel');
 const catchAsync = require('../utils/catchAsync');
 const signToken = require('../utils/jwtTokens');
 const AppError = require('../utils/appError');
@@ -328,6 +329,19 @@ const unLinkGoogle = catchAsync(async (req, res, next) => {
 	});
 });
 
+const profile = catchAsync(async (req, res, next) => {
+	let user = await User.findById(req.user._id).populate({
+		path: 'roomsPartOf',
+		select: 'name admin description',
+	});
+	user = await user.populate({
+		path: 'roomsPartOf.admin',
+		select: 'name',
+	});
+
+	res.json(user);
+});
+
 module.exports = {
 	signup,
 	login,
@@ -340,4 +354,5 @@ module.exports = {
 	googleAuth,
 	linkGoogle,
 	unLinkGoogle,
+	profile,
 };

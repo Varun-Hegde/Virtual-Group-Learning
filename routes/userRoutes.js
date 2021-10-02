@@ -18,6 +18,8 @@ router.get('/status', authMiddleware.protect, authController.status); //Get user
 router.post('/forgot-password', authController.forgotPassword); //Forgot password
 router.patch('/reset-password/:token', authController.resetPassword); //reset password
 
+router.get('/profile', authMiddleware.protect, authController.profile);
+
 router.patch(
 	'/update-my-password',
 	authMiddleware.protect,
