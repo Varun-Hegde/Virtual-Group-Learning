@@ -125,3 +125,26 @@ export const googleOauth = (state = {}, action) => {
 			return {};
 	}
 };
+
+export const userDetailsReducer = (state = {}, action) => {
+	switch (action.type) {
+		case UserConstants.USER_DETAILS_REQUEST:
+			return {
+				loading: true,
+			};
+		case UserConstants.USER_DETAILS_SUCCESS:
+			return {
+				loading: false,
+				success: true,
+				userProfileInfo: action.payload,
+			};
+		case UserConstants.USER_DETAILS_FAIL:
+			return {
+				loading: false,
+				error: action.payload,
+				success: false,
+			};
+		default:
+			return state;
+	}
+};

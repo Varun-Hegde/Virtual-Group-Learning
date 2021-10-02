@@ -142,3 +142,27 @@ export const googleOauth = (token) => async (dispatch) => {
 		});
 	}
 };
+
+//Rooms joined
+export const getUserDetails = (reqBody) => async(dispatch) => {
+	try {
+		dispatch({
+			type: UserConstants.USER_DETAILS_REQUEST,
+		});
+
+		const { data } = await axios.get('/api/users/profile',reqBody);
+
+		dispatch({
+			type: UserConstants.USER_DETAILS_SUCCESS,
+			payload: data,
+		});
+	} catch (error) {
+		dispatch({
+			type: UserConstants.USER_DETAILS_FAIL,
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message,
+		});
+	}
+}

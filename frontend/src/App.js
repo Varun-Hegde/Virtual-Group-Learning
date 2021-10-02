@@ -15,6 +15,7 @@ import SignInScreen from './screens/SignInScreen';
 import HomeScreen from './screens/HomeScreen';
 import CreateRoomScreen from './screens/CreateRoomScreen';
 import JoinRoomScreen from './screens/JoinRoomScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 function App() {
 	const dispatch = useDispatch();
@@ -82,6 +83,11 @@ function App() {
 								exact
 								path='/join-room'
 								component={JoinRoomScreen}
+							/>
+							<Route
+								exact
+								path='/profile'
+								component={ProfileScreen}
 							/>
 						</Switch>
 					</div>
