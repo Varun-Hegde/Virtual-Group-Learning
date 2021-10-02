@@ -117,7 +117,7 @@ const CreateRoomScreen = ({ history }) => {
 							type='textarea'
 							name='desc'
 							id='desc'
-							placeholder='Campground description'
+							placeholder='Room description'
 							value={description}
 							onChange={(e) => setDesc(e.target.value)}
 						/>

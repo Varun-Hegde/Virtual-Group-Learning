@@ -3,6 +3,7 @@ import ProfileCard from '../components/ProfileCard';
 import { Row, Col } from 'react-bootstrap';
 import { getUserDetails } from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
 
 function ProfileScreen({ history }) {
 	const userDetails = useSelector((state) => state.userDetails);
@@ -32,6 +33,7 @@ function ProfileScreen({ history }) {
 							<ProfileCard
 								name={room.name}
 								adminName={room.admin.name}
+                                id={room._id}
 								desc={room.description}
 							></ProfileCard>
 						</Col>

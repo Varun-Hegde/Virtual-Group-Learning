@@ -18,6 +18,7 @@ import JoinRoomScreen from './screens/JoinRoomScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ForgotPassword from './screens/ForgotPassword';
 import ResetPassword from './screens/PasswordResetScreen';
+import RoomSubjectsScreen from './screens/RoomSubjectsScreen';
 
 function App() {
 	const dispatch = useDispatch();
@@ -100,6 +101,11 @@ function App() {
 								exact
 								path='/reset-password/:token'
 								component={ResetPassword}
+							/>
+							<Route
+								exact
+								path='/:id/subjects'
+								component={RoomSubjectsScreen}
 							/>
 						</Switch>
 					</div>

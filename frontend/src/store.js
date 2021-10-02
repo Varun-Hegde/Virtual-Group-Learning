@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import * as UserReducer from './reducers/userReducer';
 import * as AppReducer from './reducers/appReducer';
 import * as RoomReducer from './reducers/roomReducer';
+import * as SubjectReducer from './reducers/subjectReducer';
 
 const initialState = {};
 const middleware = [thunk];
@@ -18,7 +19,9 @@ const reducer = combineReducers({
 	appDetails: AppReducer.app,
 	createRoom: RoomReducer.createRoomReducer,
 	joinRoom: RoomReducer.joinRoomReducer,
-	userDetails : UserReducer.userDetailsReducer
+	userDetails: UserReducer.userDetailsReducer,
+	roomSubjects: SubjectReducer.roomSubjectsReducer,
+	createSubject: SubjectReducer.createSubjectReducer 
 });
 
 const store = createStore(
