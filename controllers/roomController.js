@@ -38,6 +38,37 @@ const createRoom = catchAsync(async (req, res, next) => {
 	});
 });
 
+const joinRoom = catchAsync(async (req,res,next) => {
+
+	let { roomcode , password } = req.body;
+
+	if(!roomcode || !password) {
+		return next(new AppError('Password and Room name required', 400));
+	}
+
+	const room = await Room.findOne({ roomcode });
+
+	if(room && room.correctPassword(password,room.password)) {
+
+		room.studentsInRoom.push(req.user._id);
+		await room.save();
+
+		res.json({
+			data: {
+				room
+			}
+		})
+	}
+
+
+
+	else {
+		return next(new AppError('Room or password is incorrect', 400));
+	}
+
+});
+
 module.exports = {
 	createRoom,
+	joinRoom
 };
